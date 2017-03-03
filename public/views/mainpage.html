@@ -1,0 +1,186 @@
+<div  ng-controller='loginController'>
+
+ <pre ng-show="isShow"><h4>Welcome <b>{{user}}</b> [{{dtn}}]</h4></pre>
+  <ul class="tabmenu">
+    <li ng-hide="tab_1" ng-class="{'active': tabName=='tab1'}" ng-click="tabName='tab1'">Employee List</li>
+    <li ng-hide="tab_2" ng-class="{'active': tabName=='tab2'}" ng-click="tabName='tab2'">Resource Request</li>
+    <li ng-hide="tab_3" ng-class="{'active': tabName=='tab3'}" ng-click="tabName='tab3'">FAQ</li>
+  </ul>
+
+  <div ng-switch="tabName">
+    <div ng-switch-when="tab1"><p>tab1 content</p></div>
+    <div ng-switch-when="tab2">
+      
+        <div class="container" ng-controller="resourceRequestController">
+    
+    <section class="contents">
+      <div class="small-border"><span class="border-description">Request for Resource</span>
+      </div>
+      <form>
+        <p class="profile-desc">Profile:</p>
+        <table>
+          <tr>
+            <td>
+              <label class="designation">Designation:</label>
+            </td>
+            <td>
+              <select class="select-designation" ng-model="contact.designation">
+                <option value="PAT">PAT</option>
+                <option value="ASSOCIATE">ASSOCIATE</option>
+                <option value="TECH-LEAD">TECH-LEAD</option>
+                <option value="MANAGER">MANAGER</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Experience in years:</label>
+            </td>
+            <td>
+              <input type="text" ng-model="contact.experience ">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label class="numbers">Numbers:</label>
+            </td>
+            <td>
+              <input type="text" ng-model="contact.numbers">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label class="skills">Skills:</label>
+            </td>
+            <td>
+              <input type="checkbox" class="check-box" name="" value="html">HTML
+              <input type="checkbox" name="" value="CSS">CSS
+              <input type="checkbox" name="" value="Java Script">Java Script
+              <br>
+              <input type="checkbox" name="" value="JQ">JQ
+              <input type="checkbox" name="" value="Flash">Flash
+              <input type="checkbox" name="" value="Flex">Flex</td>
+          </tr>
+          <tr>
+            <td>
+              <label class="numbers">Competency:</label>
+            </td>
+            <td>
+              <select class="select-designation" ng-model="contact.competency">
+                <option value="ANGULAR JS">ANGULAR JS</option>
+                <option value="REACT JS">REACT JS</option>
+                <option value="MEAN STACK">MEAN STACK</option>
+                <option value="EXPRESS JS">EXPRESS JS</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label class="numbers">Position:</label>
+            </td>
+            <td>
+              <input type="radio" ng-model="contact.position" value="On site ">On site
+              <input type="radio" ng-model="contact.position" value="Off-shore">Off shore</td>
+          </tr>
+          <tr>
+            <td>
+              <label class="numbers">Location:</label>
+            </td>
+            <td>
+              <select class="select-designation" ng-model="contact.location">
+                <option value="CHENNAI">CHENNAI</option>
+                <option value="KOLKATA">KOLKATA</option>
+                <option value="BANGALORE">BANGALORE</option>
+                <option value="COIMBATORE">COIMBATORE</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+        <button class="save-button" ng-click="addContact()">Save</button>
+        <button class="save-button" ng-click="update()">Update</button>
+      </form>
+      
+      <p class="request-list"><u>Request list</u>
+      </p>
+      <table class="table-request-list">
+        <tr>
+          <th>Request Id</th>
+          <th>Designation</th>
+          <th>Position</th>
+          <th>No.</th>
+          <th>Competency</th>
+          <th>Location</th>
+          <th>Edit</th>
+        </tr>
+        <tr ng-repeat="contact in employeedetail " class="listData">
+          <td>{{$index}}</td>
+          <!-- <td>color = {{color.name | json}}</td> -->
+          <td>{{contact.designation}}</td>
+          <td>{{contact.position}}</td>
+          <!-- <td>{{checkboxModel.value1}}</td> -->
+          <td>{{contact.numbers}}</td>
+          <td>{{contact.competency}}</td>
+          <td>{{contact.location}}</td>
+          <td id="imag">
+            <button id="edit-button" ng-click="edit(contact._id)"></button>
+          </td>
+        </tr>
+      </table>
+    </section>
+    
+  </div>
+    </div>
+   
+
+
+
+
+
+    <div ng-switch-when="tab3">
+    	<div>
+<h3 class="faq">Frequently Asked Questions</h3>
+<div class="faq-section">
+    <div class="faq-and-ans">
+<button class="accordion" ng-click="ShowHide()"><span><img src="img/arrow.png"></span><span>Q1. What is LorenIpsum?</span></button>
+<div  ng-show="IsHidden" >
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+</div>
+
+<button class="accordion" ng-click="ShowHide2()"><img src="img/arrow.png">Q2. What is LorenIpsum?</button>
+<div ng-show="IsHidden2">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+</div>
+
+<button class="accordion" ng-click="ShowHide3()" ><img src="img/arrow.png">Q3. What is LorenIpsum?</button>
+<div ng-show="IsHidden3" >
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+</div>
+<button class="accordion" ng-click="ShowHide4()" ><img src="img/arrow.png">Q4. What is LorenIpsum?</button>
+<div  ng-show="IsHidden4">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+</div>
+</div>
+</div>
+
+</div>
+    </div>
+
+
+
+
+
+<!--   <ul ng-controller="AccordionCtrl">
+    <li ng-repeat="item in items" ng-click="accordion.current = item.name">
+      {{item.name}}
+      <ul ng-show="accordion.current == item.name">
+        <li ng-repeat="sub in item.sub">{{sub.name}}</li>
+      </ul>
+    </li>
+  </ul>
+ -->
+
+
+
+
+  </div>
+</div>
